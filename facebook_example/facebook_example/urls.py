@@ -6,6 +6,7 @@ from django.conf import settings
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+from member.views import *
 
 urlpatterns = patterns('',
                        # facebook and registration urls
@@ -17,6 +18,9 @@ urlpatterns = patterns('',
 
                        # Uncomment the next line to enable the admin:
                        (r'^admin/', include(admin.site.urls)),
+                       url(r'^reg/$', example, name='facebook_example'),
+                       url('', include('django.contrib.auth.urls')),
+
                        )
 
 if settings.MODE == 'userena':
