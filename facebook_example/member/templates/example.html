@@ -186,18 +186,19 @@
             <button class="btn btn-primary btn-lg btn-block">Sign In</button>
             <span class="pull-right"><a href="#">Register</a></span><span><a href="{% url 'auth_password_reset' %}">Need help?</a></span>
           </div>
-          <form  class="form center "  action="{% url 'facebook_connect' %}" method="post">
-              {% csrf_token %}
-              <input type="hidden" value="{{ request.path }}" name="next" />
 
-              <!--
-              use error next for a seperate error page
-              <input type="hidden" value="/error/" name="error_next" />
-              -->
-              <div id="facebook_login_js">
-              <input onclick="F.connect(this.parentNode.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" /><br />
-              </div>
-          </form>
+        </form>
+        <form  class="form center "  action="{% url 'facebook_connect' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{ request.path }}" name="next" />
+
+            <!--
+            use error next for a seperate error page
+            <input type="hidden" value="/error/" name="error_next" />
+            -->
+            <div id="facebook_login_js">
+            <input onclick="F.connect(this.parentNode.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png" /><br />
+            </div>
         </form>
         <!--form to call registration via facebook -->
 
