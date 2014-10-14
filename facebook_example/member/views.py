@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.http import Http404
 from django.shortcuts import render_to_response
+from django.shortcuts import redirect
 from django.template.context import RequestContext
 from django.utils.translation import ugettext as _
 from django.views.decorators.csrf import csrf_exempt
@@ -22,21 +23,33 @@ def example(request):
     return render_to_response('example.html', context)
 
 def collectinfo(request):
-    if request.method == 'POST':
-        try:
-            user_id = request.POST['user_id']
-            user=user.objects.get(id=user_id)
-            profile=user.profile
-            if request.POST['email2']:
-                profile.email2=request.POST['email2']
-                print  "email saved"
-            if request.POST['mobilenumber']:
-                profile.mobilenumber=request.POST['mobilenumber']
-            profile.save()
-            print 'done and saved'
-            data={'mobile':'done'}
-        except:
-            data={'error_mobile':True}
-            print 'feild'
-    context = RequestContext(request)
-    return render_to_response('example.html', context)
+    print request.POST
+    user_id = request.POST['user_id']
+    user=user.objects.get(id=user_id)
+    profile=user.profile
+    if request.POST['email2']:
+        profile.email2=request.POST['email2']
+        print  "email saved"
+    if request.POST['mobilenumber']:
+        profile.mobilenumber=request.POST['mobilenumber']
+    profile.save()
+    print 'done and saved'
+    data={'mobile':'done'}
+    # if request.method == 'POST':
+    #     try:
+    #         user_id = request.POST['user_id']
+    #         user=user.objects.get(id=user_id)
+    #         profile=user.profile
+    #         if request.POST['email2']:
+    #             profile.email2=request.POST['email2']
+    #             print  "email saved"
+    #         if request.POST['mobilenumber']:
+    #             profile.mobilenumber=request.POST['mobilenumber']
+    #         profile.save()
+    #         print 'done and saved'
+    #         data={'mobile':'done'}
+    #     except:
+    #         data={'error_mobile':True}
+    #         print 'feild'
+    # context = RequestContext(request)
+    return redirect('/')
