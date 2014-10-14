@@ -29,13 +29,14 @@ def collectinfo(request):
             profile=user.profile
             if request.POST['email2']:
                 profile.email2=request.POST['email2']
-
-            if request.POST['mobile']:
-                profile.mobilenumber=request.POST['mobile']
+                print  "email saved"
+            if request.POST['mobilenumber']:
+                profile.mobilenumber=request.POST['mobilenumber']
             profile.save()
             print 'done and saved'
             data={'mobile':'done'}
         except:
             data={'error_mobile':True}
+            print 'feild'
     context = RequestContext(request)
     return render_to_response('example.html', context)
