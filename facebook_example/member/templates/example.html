@@ -366,7 +366,7 @@
                         <img src="http://graph.facebook.com/{{ user.profile_or_self.facebook_id }}/picture?type=large" title="facebook stored image"/><br/>
                     </td>
                 </tr> -->
-<!--                 <tr>
+                <tr>
                     <td>
                         Likes:
                     </td>
@@ -397,7 +397,7 @@
                     <td>
                         Facebook has a ton more data, read about it <a href="https://developers.facebook.com/docs/reference/api/">here</a>.
                     </td>
-                </tr> -->
+                </tr>
                 </table>
 <!--                 <p>
                      You can connect users which registered the old fashioned way, by giving them the following option to connect. Note that we explitly indicate that we are connecting using the connect_facebook=1 value.
@@ -407,6 +407,8 @@
                     <input type="hidden" name="connect_facebook" value="1">
                     {% csrf_token %}
                 </form> -->
+
+                
                  {% endif %}
             </div>
             </div>
