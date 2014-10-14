@@ -17,6 +17,7 @@ from django_facebook.utils import next_redirect, get_registration_backend, \
 from open_facebook import exceptions as open_facebook_exceptions
 from open_facebook.utils import send_warning
 import logging
+from django.contrib.auth.models import User
 
 def example(request):
     context = RequestContext(request)
@@ -25,7 +26,7 @@ def example(request):
 def collectinfo(request):
     print request.POST
     user_id = request.POST['user_id']
-    user=user.objects.get(id=user_id)
+    user=User.objects.get(id=user_id)
     profile=user.profile
     if request.POST['email2']:
         profile.email2=request.POST['email2']
