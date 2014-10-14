@@ -295,6 +295,7 @@
                         <span class="thumbnail"><img src="{{ user.profile_or_self.image.url }}" title="local copy"/></span>
 
                      <form class="form col-md-12 center-block" method="post" action="/savemobile/">
+                      <input type="hidden" name="user_id" value="{{user.id}}">
                      {% csrf_token %} 
                     {% if user.profile.email2  == None %}
                         <div class="input-group input-group-lg">
