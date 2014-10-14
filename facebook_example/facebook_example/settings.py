@@ -13,8 +13,8 @@ if DJANGO != '1.5.1':
     
 TESTING = 'test' in sys.argv
 
-FACEBOOK_APP_ID = '215464901804004'
-FACEBOOK_APP_SECRET = '0aceba27823a9dfefa955f76949fa4b4'
+FACEBOOK_APP_ID = '351932604967436'
+FACEBOOK_APP_SECRET = '1a8f7827dab87c7caf56149af2b42a2b'
 TEMPLATE_CONTEXT_PROCESSORS = [
     'django.contrib.auth.context_processors.auth',
     'django.core.context_processors.debug',
