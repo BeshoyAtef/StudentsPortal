@@ -6,6 +6,7 @@ from django_facebook.models import FacebookModel, get_user_model
 from django_facebook.utils import get_profile_model
 import logging
 logger = logging.getLogger(__name__)
+from django_facebook.models import *
 
 
 try:
@@ -31,7 +32,7 @@ class UserProfile(FacebookModel):
     '''
     mobilenumber = models.CharField(max_length=20 , null=True)
     email2 = models.EmailField(max_length=254, unique=True)
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(FacebookCustomUser)
 
 
 @receiver(post_save)
