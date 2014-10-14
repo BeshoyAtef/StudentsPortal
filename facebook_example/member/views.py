@@ -20,3 +20,22 @@ import logging
 def example(request):
     context = RequestContext(request)
     return render_to_response('example.html', context)
+
+def collectinfo(request):
+    if request.method == 'POST':
+        try:
+            user_id = request.POST['user_id']
+            user=user.objects.get(id=user_id)
+            profile=user.profile
+            if request.POST['email2']:
+                profile.email2=request.POST['email2']
+
+            if request.POST['mobile']:
+                profile.mobilenumber=request.POST['mobile']
+            profile.save()
+            print 'done and saved'
+            data={'mobile':'done'}
+        except:
+            data={'error_mobile':True}
+    context = RequestContext(request)
+    return render_to_response('example.html', context)

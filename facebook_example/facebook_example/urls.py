@@ -18,8 +18,10 @@ urlpatterns = patterns('',
 
                        # Uncomment the next line to enable the admin:
                        (r'^admin/', include(admin.site.urls)),
-                       url(r'^reg/$', example, name='facebook_example'),
+                       url(r'^$', example, name='facebook_example'),
                        url('', include('django.contrib.auth.urls')),
+                       url(r'^savemobile/$', collectinfo),
+
 
                        )
 

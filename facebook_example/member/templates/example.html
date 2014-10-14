@@ -157,8 +157,8 @@
               </div>
               <div class="panel-body">
                     <strong><span class="glyphicon glyphicon-globe"></span> تكون عارف  أساسيات الانترنت </strong> <br>
-                    <strong><span class="glyphicon glyphicon-signal"></span> لاب توب علية  جيجا فاضية و يكون الوير ليس شغال</strong>                    
-
+                    <strong><span class="glyphicon glyphicon-signal"></span> لاب توب علية  جيجا فاضية و يكون الوير ليس شغال</strong>    
+                    و سيب الباقي علينا                
               </div>
           </div>
 
@@ -224,7 +224,7 @@
     <div class="content col-md-6" style="margin-top: 10px;">
          {% if request.GET.fb_error_or_cancel or request.GET.error %}
         <div class="error">
-             Please click allow in the facebook interface, to access Fashiolista
+             Please click allow in the facebook interface, to access COCC
         </div>
          {% endif %}
         <div class="error" id="django_static_error">
@@ -268,12 +268,59 @@
              {% endif %}
             <div id="header_bar">
                  {% if user.is_authenticated %}
-                <h1>Welcome {{ user }}</h1>
-                <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}">logout</a><br/>
+
+                {% if user.profile.email2  %}
+                    {% if  user.profile.mobilenumber %}
+                    <div class="alert alert-success" role="alert">
+                          <strong>كولو تمام!</strong> أفتكر اللحظة دي علشان قبلها مش ذي بعدها.
+                    </div>
+                    {% else %}
+                    <div class="alert alert-warning" role="alert">
+                          <strong>تحزير</strong> نرجو اضافة رقم الموبيل.
+                    </div>
+                    {% endif %}
+                {% else %}
+                    <div class="alert alert-warning" role="alert">
+                          <strong>تحزير!</strong> نرجو اضافة  البريد الالكتروني.
+                    </div>
+                {% endif %}
+
+
+                
+                <div class="panel panel-primary">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">{{ user.first_name }} {{ user.last_name }} :  {{ user }}</h3>
+                      </div>
+                      <div class="panel-body">
+                        <span class="thumbnail"><img src="{{ user.profile_or_self.image.url }}" title="local copy"/></span>
+
+                     <form class="form col-md-12 center-block" method="post" action="savemobile">
+                    {% if user.profile.email2  == None %}
+                        <div class="input-group input-group-lg">
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Email</span>
+                          <input type="email" class="form-control" placeholder="Email" name="email2">
+                        </div>
+                    {% else %}
+                    Email : {{ user.profile.email2 }}
+                    {% endif %}
+
+                    {% if  user.profile.mobilenumber  == None%}
+                        <div class="input-group input-group-lg">
+                          <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>Mobile</span>
+                          <input type="text" class="form-control" placeholder="Mobile" name"mobilenumber">
+                        </div>
+                    {% else %}
+                    Mobile : {{ user.profile.mobilenumber }}
+                    {% endif %}
+
+                      </div>
+                </div>
+
+                <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">logout</a><br/>
                 <p>
-                     Thank you for logging in with Facebook. By default you will have the following data available:
+                     Thank you for logging in with Facebook. 
                 </p>
-                <table id="rounded-corner">
+<!--                 <table id="rounded-corner">
                 <thead>
                 <tr>
                     <th>
@@ -307,7 +354,7 @@
                     <td>
                         {{ user.profile_or_self.gender }}
                     </td>
-                </tr>
+                </tr> -->
 <!--                 <tr>
                     <td>
                         About me:
@@ -332,7 +379,7 @@
                         {{ user.profile_or_self.facebook_id }}
                     </td>
                 </tr> -->
-                <tr>
+<!--                 <tr>
                     <td>
                         Date of Birth:
                     </td>
@@ -354,9 +401,10 @@
                         Local Image:
                     </td>
                     <td>
-                        <img src="{{ user.profile_or_self.image.url }}" title="local copy"/>
+
+                        
                     </td>
-                </tr>
+                </tr> -->
                  {% endif %}
 <!--                 <tr>
                     <td>
@@ -366,7 +414,7 @@
                         <img src="http://graph.facebook.com/{{ user.profile_or_self.facebook_id }}/picture?type=large" title="facebook stored image"/><br/>
                     </td>
                 </tr> -->
-                <tr>
+<!--                 <tr>
                     <td>
                         Likes:
                     </td>
@@ -397,7 +445,7 @@
                     <td>
                         Facebook has a ton more data, read about it <a href="https://developers.facebook.com/docs/reference/api/">here</a>.
                     </td>
-                </tr>
+                </tr> -->
                 </table>
 <!--                 <p>
                      You can connect users which registered the old fashioned way, by giving them the following option to connect. Note that we explitly indicate that we are connecting using the connect_facebook=1 value.
@@ -408,7 +456,7 @@
                     {% csrf_token %}
                 </form> -->
 
-                
+
                  {% endif %}
             </div>
             </div>
