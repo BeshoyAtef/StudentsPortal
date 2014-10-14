@@ -6,10 +6,10 @@ django_version = django.VERSION
 # some complications related to our travis testing setup
 DJANGO = os.environ.get('DJANGO', '1.5.1')
 MODE = os.environ.get('MODE', 'standalone')
-CUSTOM_USER_MODEL = bool(int(os.environ.get('CUSTOM_USER_MODEL', '1')))
+# CUSTOM_USER_MODEL = bool(int(os.environ.get('CUSTOM_USER_MODEL', '1')))
 
-if DJANGO != '1.5.1':
-    CUSTOM_USER_MODEL = True
+# if DJANGO != '1.5.1':
+#     CUSTOM_USER_MODEL = True
     
 TESTING = 'test' in sys.argv
 
@@ -37,11 +37,14 @@ AUTHENTICATION_BACKENDS = (
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
-if CUSTOM_USER_MODEL:
-    AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
-else:
-    AUTH_USER_MODEL = 'auth.User'
-    AUTH_PROFILE_MODULE = 'member.UserProfile'
+# if CUSTOM_USER_MODEL:
+#     AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
+# else:
+#     AUTH_USER_MODEL = 'auth.User'
+#     AUTH_PROFILE_MODULE = 'member.UserProfile'
+
+AUTH_USER_MODEL = 'auth.User'
+AUTH_PROFILE_MODULE = 'member.UserProfile'
 
 BASE_ROOT = os.path.abspath(
     os.path.join(os.path.split(__file__)[0]))

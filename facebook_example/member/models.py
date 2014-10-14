@@ -32,7 +32,7 @@ class UserProfile(FacebookModel):
     '''
     mobilenumber = models.CharField(max_length=20 , null=True)
     email2 = models.EmailField(max_length=254, unique=True)
-    user = models.OneToOneField(FacebookCustomUser)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
 
 
 @receiver(post_save)
