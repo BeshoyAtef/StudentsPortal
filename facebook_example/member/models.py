@@ -29,6 +29,8 @@ class UserProfile(FacebookModel):
     '''
     Inherit the properties from django facebook
     '''
+    mobilenumber = models.CharField(max_length=20 , null=True)
+    email = models.EmailField(max_length=254, unique=True)
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
 
 
