@@ -37,11 +37,9 @@ AUTHENTICATION_BACKENDS = (
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
-if CUSTOM_USER_MODEL:
-    AUTH_USER_MODEL = 'django_facebook.FacebookCustomUser'
-else:
-    AUTH_USER_MODEL = 'auth.User'
-    AUTH_PROFILE_MODULE = 'member.UserProfile'
+
+AUTH_USER_MODEL = 'auth.User'
+AUTH_PROFILE_MODULE = 'member.UserProfile'
 
 BASE_ROOT = os.path.abspath(
     os.path.join(os.path.split(__file__)[0]))
@@ -97,6 +95,7 @@ USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
+
 
 
 # URL prefix for static files.
