@@ -28,7 +28,7 @@ def collectinfo(request):
     user=FacebookCustomUser.objects.get(id=user_id)
     profile=user
     try:
-        if request.POST['email2']:
+        if request.POST.get('email2'):
             profile.email2=request.POST['email2']
             print  "email saved"
     except ImportError as e:
@@ -36,7 +36,7 @@ def collectinfo(request):
         pass
 
     try:
-        if request.POST['mobilenumber']:
+        if request.POST.get('mobilenumber'):
             profile.mobilenumber=request.POST['mobilenumber']
             print  "mobilenumber saved"
     except ImportError as e:
