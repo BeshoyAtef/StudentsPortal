@@ -45,8 +45,6 @@ def collectinfo(request):
         logger.info('Couldnt save mobilenumber, got error %s', e)
         pass
     profile.save()
-
-    profile=FacebookCustomUser.objects.get(id=user_id)
     print profile.email2
     print profile.mobilenumber
 
