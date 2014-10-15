@@ -29,7 +29,7 @@ def collectinfo(request):
     profile=user
     try:
         if request.POST['email2']:
-            profile.email2=request.POST.['email2']
+            profile.email2=request.POST['email2']
             print  "email saved"
     except ImportError as e:
         logger.info('Couldnt save email2, got error %s', e)
@@ -37,7 +37,7 @@ def collectinfo(request):
 
     try:
         if request.POST['mobilenumber']:
-            profile.mobilenumber=request.POST.['mobilenumber']
+            profile.mobilenumber=request.POST['mobilenumber']
             print  "mobilenumber saved"
     except ImportError as e:
         logger.info('Couldnt save mobilenumber, got error %s', e)
