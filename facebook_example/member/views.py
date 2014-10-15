@@ -28,10 +28,10 @@ def collectinfo(request):
     user=FacebookCustomUser.objects.get(id=user_id)
     profile=user
     if request.POST['email2']:
-        profile.email2=request.POST['email2']
+        profile.email2=request.POST.__contains__('email2'):
         print  "email saved"
     if request.POST['mobilenumber']:
-        profile.mobilenumber=request.POST['mobilenumber']
+        profile.mobilenumber=request.POST.__contains__('mobilenumber'):
     profile.save()
     print 'done and saved'
     data={'mobile':'done'}
