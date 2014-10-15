@@ -25,7 +25,8 @@ def example(request):
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    profile=FacebookCustomUser.objects.get(id=user_id)
+    user=FacebookCustomUser.objects.get(id=user_id)
+    profile = UserProfile.objects .get_or_create(user=user)
     try:
         if request.POST.get('email2'):
             profile.email2=request.POST['email2']
