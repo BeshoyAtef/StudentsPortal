@@ -17,41 +17,38 @@ from django_facebook.utils import next_redirect, get_registration_backend, \
 from open_facebook import exceptions as open_facebook_exceptions
 from open_facebook.utils import send_warning
 import logging
-from django_facebook.models import *
-from django.contrib.auth.models import User
 
 def example(request):
     context = RequestContext(request)
     return render_to_response('example.html', context)
 
 def collectinfo(request):
-    # print request.POST
-    # user_id = request.POST['user_id']
-    # user=FacebookCustomUser.objects.get(id=user_id)
-    # profile=user.UserProfile
-    # if request.POST['email2']:
-    #     profile.email2=request.POST['email2']
-    #     print  "email saved"
-    # if request.POST['mobilenumber']:
-    #     profile.mobilenumber=request.POST['mobilenumber']
-    # profile.save()
-    # print 'done and saved'
-    # data={'mobile':'done'}
-    if request.method == 'POST':
-        try:
-            user_id = request.POST['user_id']
-            user=User.objects.get(id=user_id)
-            profile=user.profile
-            if request.POST['email2']:
-                profile.email2=request.POST['email2']
-                print  "email saved"
-            if request.POST['mobilenumber']:
-                profile.mobilenumber=request.POST['mobilenumber']
-            profile.save()
-            print 'done and saved'
-            data={'mobile':'done'}
-        except:
-            data={'error_mobile':True}
-            print 'feild'
-    context = RequestContext(request)
+    user_id = request.POST['user_id']
+    user=user.objects.get(id=user_id)
+    profile=user.profile
+    if request.POST['email2']:
+        profile.email2=request.POST['email2']
+        print  "email saved"
+    if request.POST['mobilenumber']:
+        profile.mobilenumber=request.POST['mobilenumber']
+    profile.save()
+    print 'done and saved'
+    data={'mobile':'done'}
+    # if request.method == 'POST':
+    #     try:
+    #         user_id = request.POST['user_id']
+    #         user=user.objects.get(id=user_id)
+    #         profile=user.profile
+    #         if request.POST['email2']:
+    #             profile.email2=request.POST['email2']
+    #             print  "email saved"
+    #         if request.POST['mobilenumber']:
+    #             profile.mobilenumber=request.POST['mobilenumber']
+    #         profile.save()
+    #         print 'done and saved'
+    #         data={'mobile':'done'}
+    #     except:
+    #         data={'error_mobile':True}
+    #         print 'feild'
+    # context = RequestContext(request)
     return redirect('/')
