@@ -297,7 +297,7 @@
                      <form class="form col-md-12 center-block" method="post" action="/savemobile/">
                       <input type="hidden" name="user_id" value="{{user.id}}">
                      {% csrf_token %} 
-                    {% if user.profile.email2  == None %}
+                    {% if user.email2  == None %}
                         <div class="input-group input-group-lg">
                           <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Email</span>
                           <input type="email" class="form-control" placeholder="Email" name="email2">
@@ -309,7 +309,7 @@
                     </div>
                     {% endif %}
 
-                    {% if  user.profile.mobilenumber  == None%}
+                    {% if  user.mobilenumber  == None%}
                         <div class="input-group input-group-lg">
                           <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>Mobile</span>
                           <input type="text" class="form-control" placeholder="Mobile" name"mobilenumber">
