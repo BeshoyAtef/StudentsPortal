@@ -25,8 +25,7 @@ def example(request):
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    user=FacebookCustomUser.objects.get(id=user_id)
-    profile=user
+    profile=FacebookCustomUser.objects.get(id=user_id)
     try:
         if request.POST.get('email2'):
             profile.email2=request.POST['email2']
@@ -42,6 +41,7 @@ def collectinfo(request):
     except ImportError as e:
         logger.info('Couldnt save mobilenumber, got error %s', e)
         pass
+    profile.save()
 
     # if request.method == 'POST':
     #     try:
