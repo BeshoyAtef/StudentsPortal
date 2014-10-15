@@ -9,7 +9,7 @@ MODE = os.environ.get('MODE', 'standalone')
 CUSTOM_USER_MODEL = bool(int(os.environ.get('CUSTOM_USER_MODEL', '1')))
 
 if DJANGO != '1.5.1':
-    CUSTOM_USER_MODEL = True
+    CUSTOM_USER_MODEL = False
     
 TESTING = 'test' in sys.argv
 
@@ -42,7 +42,6 @@ if CUSTOM_USER_MODEL:
 else:
     AUTH_USER_MODEL = 'auth.User'
     AUTH_PROFILE_MODULE = 'member.UserProfile'
-
 
 BASE_ROOT = os.path.abspath(
     os.path.join(os.path.split(__file__)[0]))
@@ -264,4 +263,3 @@ elif MODE == 'userena':
 # FACEBOOK_STORE_FRIENDS = True
 
 FACEBOOK_OG_SHARE_DB_TABLE = 'django_facebook_open_graph_share'
-AUTH_PROFILE_MODULE = 'django_facebook.FacebookProfile'
