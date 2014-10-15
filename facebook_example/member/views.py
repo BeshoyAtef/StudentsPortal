@@ -45,6 +45,10 @@ def collectinfo(request):
         pass
     profile.save()
 
+    profile=FacebookCustomUser.objects.get(id=user_id)
+    print profile.email2
+    print profile.mobilenumber
+
     # if request.method == 'POST':
     #     try:
     #         user_id = request.POST['user_id']
