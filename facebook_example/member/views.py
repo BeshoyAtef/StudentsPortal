@@ -16,6 +16,7 @@ from django_facebook.utils import next_redirect, get_registration_backend, \
     to_bool, error_next_redirect, get_instance_for
 from open_facebook import exceptions as open_facebook_exceptions
 from open_facebook.utils import send_warning
+from django_facebook.models import * 
 import logging
 
 def example(request):
