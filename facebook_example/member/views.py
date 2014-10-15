@@ -27,14 +27,22 @@ def collectinfo(request):
     user_id = request.POST['user_id']
     user=FacebookCustomUser.objects.get(id=user_id)
     profile=user
-    if request.POST['email2']:
-        profile.email2=request.POST.__contains__('email2'):
-        print  "email saved"
-    if request.POST['mobilenumber']:
-        profile.mobilenumber=request.POST.__contains__('mobilenumber'):
-    profile.save()
-    print 'done and saved'
-    data={'mobile':'done'}
+    try:
+        if request.POST['email2']:
+            profile.email2=request.POST.['email2']
+            print  "email saved"
+    except ImportError as e:
+        logger.info('Couldnt save email2, got error %s', e)
+        pass
+
+    try:
+        if request.POST['mobilenumber']:
+            profile.mobilenumber=request.POST.['mobilenumber']
+            print  "mobilenumber saved"
+    except ImportError as e:
+        logger.info('Couldnt save mobilenumber, got error %s', e)
+        pass
+
     # if request.method == 'POST':
     #     try:
     #         user_id = request.POST['user_id']
