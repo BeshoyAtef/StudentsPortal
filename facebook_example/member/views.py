@@ -24,8 +24,8 @@ def example(request):
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    user=user.objects.get(id=user_id)
-    profile=user.profile
+    user=FacebookCustomUser.objects.get(id=user_id)
+    profile=user
     if request.POST['email2']:
         profile.email2=request.POST['email2']
         print  "email saved"
