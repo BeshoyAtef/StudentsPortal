@@ -34,6 +34,13 @@ class UserProfile(FacebookModel):
     email2 = models.EmailField(max_length=254, unique=True)
     user = models.IntegerField(blank=False,unique=True)
 
+class Profile(models.Model):
+    '''
+    Inherit the properties from django facebook
+    '''
+    mobilenumber = models.CharField(max_length=20 , null=True)
+    email2 = models.EmailField(max_length=254, unique=True)
+    user = models.IntegerField(blank=False,unique=True)
 
 @receiver(post_save)
 def create_profile(sender, instance, created, **kwargs):
