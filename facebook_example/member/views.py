@@ -28,28 +28,27 @@ def collectinfo(request):
     user_id = request.POST['user_id']
     profile, created = UserProfile.objects.get_or_create(user=int(user_id))
     print created
-    try:
-        email2= request.POST.get('email2')
+    # try:
+    if request.POST.get('email2'):
         print email2 + "This si email 2"
-        if email2:
-            profile.email2=email2
-            print  "email saved"
-            profile.save()
-            print profile.email2
-    except ImportError as e:
-        logger.info('Couldnt save email2, got error %s', e)
-        pass
+        profile.email2=email2
+        print  "email saved"
+        profile.save()
+        print profile.email2
+    # except ImportError as e:
+    #     logger.info('Couldnt save email2, got error %s', e)
+    #     pass
 
-    try:
-        print "i am in ty 2"
-        if request.POST.get('mobilenumber'):
-            profile.mobilenumber=request.POST['mobilenumber']
-            print  "mobilenumber saved"
-            profile.save()
-            print "i am in if 2"
-    except ImportError as e:
-        logger.info('Couldnt save mobilenumber, got error %s', e)
-        pass
+    # try:
+    print "i am in ty 2"
+    if request.POST.get('mobilenumber'):
+        profile.mobilenumber=request.POST['mobilenumber']
+        print  "mobilenumber saved"
+        profile.save()
+        print "i am in if 2"
+    # except ImportError as e:
+    #     logger.info('Couldnt save mobilenumber, got error %s', e)
+    #     pass
     print profile.save()
     print profile.email2
     print profile.mobilenumber
