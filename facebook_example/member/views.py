@@ -31,7 +31,7 @@ def collectinfo(request):
     # try:
     if request.POST.get('email2'):
         print  "This si email 2"
-        profile.email2=email2
+        profile.email2=request.POST.get('email2')
         print  "email saved"
         profile.save()
         print profile.email2
