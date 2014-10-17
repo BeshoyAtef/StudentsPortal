@@ -35,15 +35,18 @@ def collectinfo(request):
             profile.email2=email2
             print  "email saved"
             profile.save()
+            print profile.email2
     except ImportError as e:
         logger.info('Couldnt save email2, got error %s', e)
         pass
 
     try:
+        print "i am in ty 2"
         if request.POST.get('mobilenumber'):
             profile.mobilenumber=request.POST['mobilenumber']
             print  "mobilenumber saved"
             profile.save()
+            print "i am in if 2"
     except ImportError as e:
         logger.info('Couldnt save mobilenumber, got error %s', e)
         pass
