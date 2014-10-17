@@ -25,7 +25,7 @@ def example(request):
     print request
     data={}
     try:
-        profile = Profile.objects.get(user_id=user.id)
+        profile = Profile.objects.get(user_id=request.user.id)
         data={'profile':profile}
     except ImportError as e:
         logger.info('Couldnt get profile, got error %s', e)
