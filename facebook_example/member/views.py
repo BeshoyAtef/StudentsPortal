@@ -26,7 +26,8 @@ def example(request):
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    profile = UserProfile.objects.get_or_create(user=int(user_id))[0]
+    profile, created = UserProfile.objects.get_or_create(user=int(user_id))
+    print created
     try:
         email2= request.POST.get('email2')
         print email2 + "This si email 2"
@@ -46,7 +47,7 @@ def collectinfo(request):
     except ImportError as e:
         logger.info('Couldnt save mobilenumber, got error %s', e)
         pass
-    profile.save()
+    print profile.save()
     print profile.email2
     print profile.mobilenumber
 
