@@ -26,7 +26,7 @@ def example(request):
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    profile = UserProfile.objects.get_or_create(user=int(user_id))
+    profile = UserProfile.objects.get_or_create(user=int(user_id))[0]
     try:
         email2= request.POST.get('email2')
         print email2 + "This si email 2"
