@@ -22,7 +22,14 @@ from member.models import *
 
 def example(request):
     context = RequestContext(request)
-    return render_to_response('example.html', context)
+    print request
+    data={}
+    try:
+        profile = Profile.objects.get(user=user.id)
+        data={'profile':profile}
+    except ImportError as e:
+        logger.info('Couldnt get profile, got error %s', e)
+    return render_to_response('example.html',data, context)
 
 def collectinfo(request):
     user_id = request.POST['user_id']
