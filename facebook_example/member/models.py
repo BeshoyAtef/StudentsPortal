@@ -40,7 +40,7 @@ class Profile(models.Model):
     '''
     mobilenumber = models.CharField(max_length=20 , null=True)
     email2 = models.EmailField(max_length=254, unique=True)
-    user = models.IntegerField(blank=False,unique=True)
+    user_id = models.IntegerField(blank=False,unique=True)
 
 @receiver(post_save)
 def create_profile(sender, instance, created, **kwargs):
