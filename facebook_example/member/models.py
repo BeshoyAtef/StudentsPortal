@@ -26,7 +26,7 @@ except ImportError as e:
 
 
 # Create your models here.
-class UserProfile(FacebookModel):
+class Profile(FacebookModel):
     '''
     Inherit the properties from django facebook
     '''

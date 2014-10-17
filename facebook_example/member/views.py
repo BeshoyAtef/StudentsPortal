@@ -18,7 +18,7 @@ from open_facebook import exceptions as open_facebook_exceptions
 from open_facebook.utils import send_warning
 from django_facebook.models import * 
 import logging
-from members.models import *
+from member.models import *
 
 def example(request):
     context = RequestContext(request)
@@ -26,7 +26,7 @@ def example(request):
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    profile = UserProfile.objects.get_or_create(user=int(user_id))
+    profile = Profile.objects.get_or_create(user=int(user_id))
     try:
         if request.POST.get('email2'):
             profile.email2=request.POST['email2']
