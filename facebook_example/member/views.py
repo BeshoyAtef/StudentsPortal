@@ -18,7 +18,8 @@ from open_facebook import exceptions as open_facebook_exceptions
 from open_facebook.utils import send_warning
 from django_facebook.models import * 
 import logging
-from member.models import *,Profile
+from member.models import *
+from member.models import Profile
 
 def example(request):
     context = RequestContext(request)
