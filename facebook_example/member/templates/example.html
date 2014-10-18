@@ -1,522 +1,727 @@
-{% load staticfiles %} <html>
-<head>
-<title>Connect with Facebook</title>
-<style>
-        #footer {
-            height: 80px;
-        }
-        .error {
-            border: 1px solid red;
-            margin-top: 10px;
-            padding: 20px;
-        }
-        h2 {
-            line-height: 20px;
-            min-height: 20px;
-            padding-bottom: 2px;
-            vertical-align: bottom;
-            color: #1C2A47;
-            font-size: 16px;
-        }
-        a {
-            color: #3B5998;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .messages {
-            padding: 15px;
-            background-color: #cdc;
-            list-style: none;
-        }
-        #rounded-corner
-        {
-            font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
-            font-size: 12px;
-            margin: 45px;
-            width: 480px;
-            text-align: left;
-            border-collapse: collapse;
-        }
-        #rounded-corner thead th
-        {
-            background: #b9c9fe;
-        }
-        #rounded-corner th
-        {
-            padding: 8px;
-            font-weight: normal;
-            font-size: 13px;
-            color: #039;
-            background: #b9c9fe;
-        }
-        #rounded-corner td
-        {
-            padding: 8px;
-            background: #e8edff;
-            border-top: 1px solid #fff;
-            color: #669;
-        }
-        #rounded-corner tfoot td.rounded-foot-left
-        {
-            background: #e8edff url('table-images/botleft.png') left bottom no-repeat;
-        }
-        #rounded-corner tfoot td.rounded-foot-right
-        {
-            background: #e8edff url('table-images/botright.png') right bottom no-repeat;
-        }
-        #rounded-corner tbody tr:hover td
-        {
-            background: #d0dafd;
-        }
-</style>
-<link href="{{ STATIC_URL }}django_facebook/css/facebook.css" type="text/css" rel="stylesheet" media="all"/>
-</head>
-<body>
-<!--login modal-->
-<link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-rtl/3.2.0-rc2/css/bootstrap-rtl.min.css">
+{% load staticfiles %} 
+<html>
 
-<div class="navbar navbar-inverse">
-<div class="container">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="/"><img src="{{ STATIC_URL }}/img/logo2.png"></a>
-    <a class="navbar-brand" href="/">COCC Academy</a>
-  </div>
-  <div class="navbar-collapse collapse navbar-inverse-collapse">
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">الرئيسية</a></li>
-      <li><a href="http://copticocc.org/site/">المركز الثقافى القبطى الأرثوذكسى</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="http://copticocc.org/site/?cat=48">أكاديمية مى سات</a></li>
-          <li class="divider"></li>
-          <li><a href="http://copticocc.org/site/?cat=122">أكاديمية المركز</a></li>
-        </ul>
-      </li>
-    </ul>
-<!--     <form class="navbar-form navbar-left" _lpchecked="1">
-      <input type="text" class="form-control col-lg-8" placeholder="Search">
-    </form> -->
-<!--     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Link</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li class="divider"></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </li>
-    </ul> -->
-  </div>
-</div>
-</div>
-<div class="container">
-<!-- Button trigger modal -->
+  <head>
+    <title>
+      Connect with Facebook
+    </title>
+    
+    <link href="{{ STATIC_URL }}css/arabicfont.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}django_facebook/css/facebook.css" type="text/css" rel="stylesheet" media="all"/>
+    <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.min.css">
+    <link href="{{ STATIC_URL }}css/font-awesome.css" rel="stylesheet">
+    <link href="{{ STATIC_URL }}css/bootstrap-social.css" rel="stylesheet" >
 
+  </head>
+  <body>
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">HTML & CSS Workshop</h4>
-      </div>
-      <div class="modal-body">
-
-      <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">تستني اية من الكورس ؟</h3>
-            </div>
-            <div class="panel-body">
-                  <strong>هتكون قادر علي فهم المقومات الاساسة للبدء في تصميم المواقع</strong>
-                  -  عتعمل موقع احلي من ده 
-                  <br>
-                  HTML <span class="glyphicon glyphicon-edit"></span> + <br>
-                  CSS <span class="glyphicon glyphicon-adjust"></span> + <br>
-                  Bootstrap <span calss="glyphicon glyphicon-picture"></span> <br>
-                  <strong>=</strong> <br>
-                  <span class="glyphicon glyphicon-briefcase"></span> <span class="glyphicon glyphicon-briefcase"></span> <span class="glyphicon glyphicon-briefcase"></span> <span class="glyphicon glyphicon-briefcase"></span>
-            </div>
+    
+    <div class="navbar navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+            <span class="icon-bar">
+            </span>
+          </button>
+          <a class="navbar-brand" href="/" style="background-color: #2196f3;margin-top: -30px;">
+            <img src="{{ STATIC_URL }}img/logo.png" style="width: 180px;">
+          </a>
+          <a class="navbar-brand" href="/">
+            COCC Academy
+          </a>
         </div>
-        <div class="panel panel-primary">
+        <div class="navbar-collapse collapse navbar-inverse-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+              <a href="#">
+                الرئيسية
+              </a>
+            </li>
+            <li>
+              <a href="http://copticocc.org/site/">
+                المركز الثقافى القبطى الأرثوذكسى
+              </a>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Dropdown 
+                <b class="caret">
+                </b>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a href="http://copticocc.org/site/?cat=48">
+                    أكاديمية مى سات
+                  </a>
+                </li>
+                <li class="divider">
+                </li>
+                <li>
+                  <a href="http://copticocc.org/site/?cat=122">
+                    أكاديمية المركز
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <!--     
+<form class="navbar-form navbar-left" _lpchecked="1">
+<input type="text" class="form-control col-lg-8" placeholder="Search">
+</form>
+-->
+    <!--     
+<ul class="nav navbar-nav navbar-right">
+<li>
+<a href="#">
+Link
+</a>
+</li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+Dropdown 
+<b class="caret">
+</b>
+</a>
+<ul class="dropdown-menu">
+<li>
+<a href="#">
+Action
+</a>
+</li>
+<li>
+<a href="#">
+Another action
+</a>
+</li>
+<li>
+<a href="#">
+Something else here
+</a>
+</li>
+<li class="divider">
+</li>
+<li>
+<a href="#">
+Separated link
+</a>
+</li>
+</ul>
+</li>
+</ul>
+-->
+  </div>
+  </div>
+  </div>
+  <div class="container">
+    <!-- Button trigger modal -->
+    
+    
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">
+                &times;
+              </span>
+              <span class="sr-only">
+                Close
+              </span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+              HTML & CSS Workshop
+            </h4>
+          </div>
+          <div class="modal-body">
+            
+            <div class="panel panel-primary">
               <div class="panel-heading">
-                <h3 class="panel-title">محتاج اية قبل نا تحضر  ؟</h3>
+                <h3 class="panel-title">
+                  تستني اية من الكورس ؟
+                </h3>
               </div>
               <div class="panel-body">
-                    <strong><span class="glyphicon glyphicon-globe"></span> تكون عارف  أساسيات الانترنت </strong> <br>
-                    <strong><span class="glyphicon glyphicon-signal"></span> لاب توب علية  جيجا فاضية و يكون الوير ليس شغال</strong>    
-                    و سيب الباقي علينا                
+                <strong>
+                  هتكون قادر علي فهم المقومات الاساسة للبدء في تصميم المواقع
+                </strong>
+                -  عتعمل موقع احلي من ده 
+                <br>
+                HTML 
+                <span class="glyphicon glyphicon-edit">
+                </span>
+                + 
+                <br>
+                CSS 
+                <span class="glyphicon glyphicon-adjust">
+                </span>
+                + 
+                <br>
+                Bootstrap 
+                <span calss="glyphicon glyphicon-picture">
+                </span>
+                
+                <br>
+                <strong>
+                  =
+                </strong>
+                
+                <br>
+                <span class="glyphicon glyphicon-briefcase">
+                </span>
+                
+                <span class="glyphicon glyphicon-briefcase">
+                </span>
+                
+                <span class="glyphicon glyphicon-briefcase">
+                </span>
+                
+                <span class="glyphicon glyphicon-briefcase">
+                </span>
               </div>
-          </div>
-
-          <div class="panel panel-primary">
-                <div class="panel-heading">
-                  <h3 class="panel-title">ما هو السن المناسب ؟</h3>
-                </div>
-                <div class="panel-body">
-                      <strong>الشباب من 14 الي 70</strong>                    
-                </div>
             </div>
-
-
-
-
-
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  محتاج اية قبل نا تحضر  ؟
+                </h3>
+          </div>
+          <div class="panel-body">
+            <strong>
+              <span class="glyphicon glyphicon-globe">
+              </span>
+              تكون عارف  أساسيات الانترنت 
+            </strong>
+            
+            <br>
+            <strong>
+              <span class="glyphicon glyphicon-signal">
+              </span>
+              لاب توب علية  جيجا فاضية و يكون الوير ليس شغال
+            </strong>
+            
+            و سيب الباقي علينا                
+          </div>
+        </div>
+        
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              ما هو السن المناسب ؟
+            </h3>
+          </div>
+          <div class="panel-body">
+            <strong>
+              الشباب من 14 الي 70
+            </strong>
+            
+          </div>
+        </div>
+        
+        
+        
+        
+        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">اغلق</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">
+          اغلق
+        </button>
       </div>
     </div>
   </div>
-</div>
-
-    <div class="jumbotron col-md-6">
+  </div>
+  
+  <div class="jumbotron col-md-6">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title">HTML & CSS Workshop</h3>
+        <h3 class="panel-title">
+          HTML & CSS Workshop
+        </h3>
       </div>
       <div class="panel-body">
         من البداية للنهاية هتتعلم عن طريق المشاريع و تقديمها للمدرب و كمان المشروع النهائي الي هيضيف لخبرتك كتير و سيقوم المركز الثقافي بتوفير اتصال الانترنت و جميع البرامج المستخدمة 
-المسابقة النهائية و التي ستختبر قدرات الطالب علي الابتكار و التركيز و السرعة في تطبيق ما تعلمة من ورشة العمل. 
-          <p>
-          <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Learn more</a>
-          </p>
+        المسابقة النهائية و التي ستختبر قدرات الطالب علي الابتكار و التركيز و السرعة في تطبيق ما تعلمة من ورشة العمل. 
+        <p>
+          <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Learn more
+            </a>
+        </p>
+        
+      </div>
+      </div>
+      
+      <div class="panel panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Linux Workshop
+          </h3>
+        </div>
+        <div class="panel-body">
+          Coming Soon
+          <!-- 
+<p>
+<a class="btn btn-primary btn-lg">
+Learn more
+</a>
+</p>
+-->
+        
+      </div>
+      </div>
+      
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            Python Workshop
+          </h3>
+        </div>
+        <div class="panel-body">
+          Coming Soon
+          <!-- 
+<p>
+<a class="btn btn-primary btn-lg">
+Learn more
+</a>
+</p>
+-->
+        
+      </div>
+      </div>
+  </div>
+  
+  <div class="content col-md-6" style="margin-top: 10px;">
+    {% if request.GET.fb_error_or_cancel or request.GET.error %}
+    <div class="error">
+      Please click allow in the facebook interface, to access COCC
+    </div>
+    {% endif %}
+    <div class="error" id="django_static_error">
+      Couldn't load the static Javascript files, is django static configured correctly? 
+      <a href="http://docs.djangoproject.com/en/1.3/howto/static-files/" target="_blank">
+        See the docs here.
+      </a>
+    </div>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %} 
+      <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        {{ message }}
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    <div style="margin-top: 60px;">
+      {% if not user.is_authenticated %}
+      <div class="inner_content">
+<!--         <form class="form col-md-12 center-block" method="post" action="{% url 'django.contrib.auth.views.login' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <input type="text" class="form-control input-lg" placeholder="Email">
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control input-lg" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-lg btn-block">
+              Sign In
+            </button>
+            <span class="pull-right">
+              <a href="#">
+                Register
+              </a>
+            </span>
+            <span>
+              <a href="{% url 'auth_password_reset' %}">
+                Need help?
+              </a>
+            </span>
+          </div>
+        </form> -->
+        <style type="text/css">
+        </style>
 
+        <form class="form center " action="{% url 'facebook_connect' %}" method="post">
+          {% csrf_token %} 
+          <input type="hidden" value="{{ request.path }}" name="next"/>
+          <!--
+use error next for a seperate error page
+<input type="hidden" value="/error/" name="error_next" />
+-->
+          <div id="facebook_login_js">
+          <a class="btn btn-block btn-social btn-lg btn-facebook" onclick="F.connect(this.parentNode.parentNode); return false;" style="text-transform: none;text-align: center;"><i class="fa fa-facebook"></i>سجل بأستخدام الفيسبوك</a>
+           <!--  <input onclick="F.connect(this.parentNode.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png"/> -->
+            <br/>
+          </div>
+        </form>
+        <!--form to call registration via facebook -->
+      </div>
+      {% endif %}
+      <div id="header_bar">
+        {% if user.is_authenticated %}
+        
+        {% if user.profile.email2  %}
+        {% if  user.profile.mobilenumber %}
+        <div class="alert alert-success" role="alert">
+          <strong>
+            كولو تمام!
+          </strong>
+          أفتكر اللحظة دي علشان قبلها مش ذي بعدها.
+        </div>
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+          <strong>
+            تحزير
+          </strong>
+          نرجو اضافة رقم الموبيل.
+        </div>
+        {% endif %}
+        {% else %}
+        <div class="alert alert-warning" role="alert">
+          <strong>
+            تحزير!
+          </strong>
+          نرجو اضافة  البريد الالكتروني.
+        </div>
+        {% endif %}
+        
+        
+        
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              {{ user.first_name }} {{ user.last_name }} :  {{ user }}
+            </h3>
+          </div>
+          <div class="panel-body">
+            <span class="thumbnail">
+              <img src="{{ user.profile_or_self.image.url }}" title="local copy"/>
+            </span>
+            
+            <form class="form col-md-12 center-block" method="post" action="/savemobile/">
+              <input type="hidden" name="user_id" value="{{user.id}}">
+              {% csrf_token %} 
+              {% if not user.profile.email2  %}
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-envelope">
+                  </span>
+                  Email
+                </span>
+                <input type="email" class="form-control" placeholder="Email" name="email2">
+              </div>
+              {% else %}
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-envelope">
+                  </span>
+                  Email
+                </span>
+                <input type="email" class="form-control" placeholder="Email" name="email2" value="{{ user.profile.email2 }}" disabled>
+              </div>
+              {% endif %}
+              
+              {% if not user.profile.mobilenumber   %}
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-phone">
+                  </span>
+                  Mobile
+                </span>
+                <input type="text" class="form-control" placeholder="Mobile" name="mobilenumber">
+              </div>
+              {% else %}
+              <div class="input-group input-group-lg">
+                <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-phone">
+                  </span>
+                  Mobile
+                </span>
+                <input type="text" class="form-control" placeholder="Mobile" name="mobilenumber" value="{{ user.profile.mobilenumber }}" disabled>
+              </div>
+              
+              
+              {% endif %}
+              
+              <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit">
+                Save
+              </button>
+            </form>
+            
+          </div>
+        </div>
+        
+        <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">
+          logout
+        </a>
+        <br/>
+        <p>
+          Thank you for logging in with Facebook. 
+        </p>
+        <!--                 
+<table id="rounded-corner">
+<thead>
+<tr>
+<th>
+Field
+</th>
+<th>
+Data
+</th>
+</tr>
+</thead>
+<tr>
+<td>
+First Name:
+</td>
+<td>
+{{ user.first_name }}
+</td>
+</tr>
+<tr>
+<td>
+Last Name:
+</td>
+<td>
+{{ user.last_name }}
+</td>
+</tr>
+<tr>
+<td>
+Gender:
+</td>
+<td>
+{{ user.profile_or_self.gender }}
+</td>
+</tr>
+-->
+        <!--                 
+<tr>
+<td>
+About me:
+</td>
+<td>
+{{ user.profile_or_self.about_me }}
+</td>
+</tr>
+<tr>
+<td>
+Facebook profile url:
+</td>
+<td>
+{{ user.profile_or_self.facebook_profile_url }}
+</td>
+</tr>
+<tr>
+<td>
+Facebook ID:
+</td>
+<td>
+{{ user.profile_or_self.facebook_id }}
+</td>
+</tr>
+-->
+        <!--                 
+<tr>
+<td>
+Date of Birth:
+</td>
+<td>
+{{ user.profile_or_self.date_of_birth }}
+</td>
+</tr>
+<tr>
+<td>
+Website Url:
+</td>
+<td>
+{{ user.profile_or_self.website_url }}
+</td>
+</tr>
+{% if user.profile_or_self.image %}
+<tr>
+<td>
+Local Image:
+</td>
+<td>
+
+
+</td>
+</tr>
+-->
+        {% endif %}
+        <!--                 
+<tr>
+<td>
+Hotlinked Image:
+</td>
+<td>
+<img src="http://graph.facebook.com/{{ user.profile_or_self.facebook_id }}/picture?type=large" title="facebook stored image"/>
+<br/>
+</td>
+</tr>
+-->
+        <!--                 
+<tr>
+<td>
+Likes:
+</td>
+<td>
+<ul>
+{% for like in user.profile_or_self.likes|slice:":5" %}
+<li>
+{{ like.name }}
+</li>
+{% endfor %}
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+Friends:
+</td>
+<td>
+<ul>
+{% for friend in user.profile_or_self.friends|slice:":5" %}
+<li>
+{{ friend.name }}
+</li>
+{% endfor %}
+</ul>
+</td>
+</tr>
+<tr>
+<td>
+Getting More:
+</td>
+<td>
+Facebook has a ton more data, read about it 
+<a href="https://developers.facebook.com/docs/reference/api/">
+here
+</a>
+.
+</td>
+</tr>
+-->
+      </table>
+      <!--                 
+<p>
+You can connect users which registered the old fashioned way, by giving them the following option to connect. Note that we explitly indicate that we are connecting using the connect_facebook=1 value.
+</p>
+-->
+      <!--                 
+<form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
+<a href="javascript:void(0);" onclick="F.connect(this.parentNode);">
+Connect this account to Facebook
+</a>
+(used to connect non facebook accounts) 
+<input type="hidden" value="{{ request.path }}" name="next"/>
+<input type="hidden" name="connect_facebook" value="1">
+{% csrf_token %}
+</form>
+-->
+      
+      
+      {% endif %}
+    </div>
+
+    <div calss="row">
+      <div calss="col-md-6 ">
+        <div calss="container ">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                أكاديمية المركز
+              </h3>
+            </div>
+            <div class="panel-body">
+            <img src="{{ STATIC_URL }}img/cocc.jpg" alt="COCC" class="img-thumbnail" style="width: 140px;float:right;">
+
+              <div class="fb-like" data-href="https://www.facebook.com/COCCAcademy" data-layout="standard" data-action="like" data-show-faces="true" data-width="300" data-share="true">
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                 المركز الثقافى القبطى الأرثوذكسى
+              </h3>
+            </div>
+            <div class="panel-body">
+            <img src="{{ STATIC_URL }}img/cocc3.jpg" alt="COCC" class="img-thumbnail" style="width: 140px;">
+              <div class="fb-like" data-href="https://www.facebook.com/CopticOCC" data-layout="standard" data-action="like" data-show-faces="true" data-width="300" data-share="true">
+              </div>
+            </div>
+          </div>
+
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">
+                  الأنبا إرميا
+              </h3>
+            </div>
+            <div class="panel-body">
+            <img src="{{ STATIC_URL }}img/anba.jpg" alt="COCC" class="img-thumbnail" style="width: 140px;">
+              <div class="fb-like" data-href="https://www.facebook.com/BishopErmia" data-layout="standard" data-action="like" data-show-faces="true" data-width="300" data-share="true">
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="panel panel-success">
-      <div class="panel-heading">
-        <h3 class="panel-title">Linux Workshop</h3>
-      </div>
-      <div class="panel-body">
-        Coming Soon
-          <!-- <p><a class="btn btn-primary btn-lg">Learn more</a></p> -->
 
-      </div>
-    </div>
-
-    <div class="panel panel-warning">
-      <div class="panel-heading">
-        <h3 class="panel-title">Python Workshop</h3>
-      </div>
-      <div class="panel-body">
-        Coming Soon
-          <!-- <p><a class="btn btn-primary btn-lg">Learn more</a></p> -->
-
-      </div>
-    </div>
+  </div>
+  
+  
+  <script src="{{ STATIC_URL }}django_facebook/js/statictest.js" type="text/javascript">
+  </script>
+  {% include 'django_facebook/_facebook_js.html' %}
+  </div>
+  
+  
+  </div>
 </div>
 
-    <div class="content col-md-6" style="margin-top: 10px;">
-         {% if request.GET.fb_error_or_cancel or request.GET.error %}
-        <div class="error">
-             Please click allow in the facebook interface, to access COCC
-        </div>
-         {% endif %}
-        <div class="error" id="django_static_error">
-             Couldn't load the static Javascript files, is django static configured correctly? <a href="http://docs.djangoproject.com/en/1.3/howto/static-files/" target="_blank">See the docs here.</a>
-        </div>
-         {% if messages %}
-        <ul class="messages">
-             {% for message in messages %} <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-             {% endfor %}
-        </ul>
-         {% endif %}
-        <div style="margin-top: 60px;">
-             {% if not user.is_authenticated %}
-            <div class="inner_content">
-                <form class="form col-md-12 center-block" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-                     {% csrf_token %}
-                    <div class="form-group">
-                        <input type="text" class="form-control input-lg" placeholder="Email">
-                    </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-lg" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-lg btn-block">Sign In</button>
-                        <span class="pull-right"><a href="#">Register</a></span><span><a href="{% url 'auth_password_reset' %}">Need help?</a></span>
-                    </div>
-                </form>
-                <form class="form center " action="{% url 'facebook_connect' %}" method="post">
-                     {% csrf_token %} <input type="hidden" value="{{ request.path }}" name="next"/>
-                    <!--
-            use error next for a seperate error page
-            <input type="hidden" value="/error/" name="error_next" />
-            -->
-                    <div id="facebook_login_js">
-                        <input onclick="F.connect(this.parentNode.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png"/><br/>
-                    </div>
-                </form>
-                <!--form to call registration via facebook -->
-                 You are not logged in, Please login by clicking one of the buttons above
-            </div>
-             {% endif %}
-            <div id="header_bar">
-                 {% if user.is_authenticated %}
 
-                {% if user.profile.email2  %}
-                    {% if  user.profile.mobilenumber %}
-                    <div class="alert alert-success" role="alert">
-                          <strong>كولو تمام!</strong> أفتكر اللحظة دي علشان قبلها مش ذي بعدها.
-                    </div>
-                    {% else %}
-                    <div class="alert alert-warning" role="alert">
-                          <strong>تحزير</strong> نرجو اضافة رقم الموبيل.
-                    </div>
-                    {% endif %}
-                {% else %}
-                    <div class="alert alert-warning" role="alert">
-                          <strong>تحزير!</strong> نرجو اضافة  البريد الالكتروني.
-                    </div>
-                {% endif %}
+</div>
 
 
-                
-                <div class="panel panel-primary">
-                      <div class="panel-heading">
-                        <h3 class="panel-title">{{ user.first_name }} {{ user.last_name }} :  {{ user }}</h3>
-                      </div>
-                      <div class="panel-body">
-                        <span class="thumbnail"><img src="{{ user.profile_or_self.image.url }}" title="local copy"/></span>
-
-                     <form class="form col-md-12 center-block" method="post" action="/savemobile/">
-                      <input type="hidden" name="user_id" value="{{user.id}}">
-                     {% csrf_token %} 
-                    {% if not user.profile.email2  %}
-                        <div class="input-group input-group-lg">
-                          <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Email</span>
-                          <input type="email" class="form-control" placeholder="Email" name="email2">
-                        </div>
-                    {% else %}
-                    <div class="input-group input-group-lg">
-                      <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span> Email</span>
-                      <input type="email" class="form-control" placeholder="Email" name="email2" value="{{ user.profile.email2 }}" disabled>
-                    </div>
-                    {% endif %}
-
-                    {% if not user.profile.mobilenumber   %}
-                        <div class="input-group input-group-lg">
-                          <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>Mobile</span>
-                          <input type="text" class="form-control" placeholder="Mobile" name="mobilenumber">
-                        </div>
-                    {% else %}
-                          <div class="input-group input-group-lg">
-                            <span class="input-group-addon"><span class="glyphicon glyphicon-phone"></span>Mobile</span>
-                            <input type="text" class="form-control" placeholder="Mobile" name="mobilenumber" value="{{ user.profile.mobilenumber }}" disabled>
-                          </div>
-
-                   
-                    {% endif %}
-
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" value="Submit">Save</button>
-                    </form>
-
-                      </div>
-                </div>
-
-                <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">logout</a><br/>
-                <p>
-                     Thank you for logging in with Facebook. 
-                </p>
-<!--                 <table id="rounded-corner">
-                <thead>
-                <tr>
-                    <th>
-                        Field
-                    </th>
-                    <th>
-                        Data
-                    </th>
-                </tr>
-                </thead>
-                <tr>
-                    <td>
-                        First Name:
-                    </td>
-                    <td>
-                        {{ user.first_name }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Last Name:
-                    </td>
-                    <td>
-                        {{ user.last_name }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Gender:
-                    </td>
-                    <td>
-                        {{ user.profile_or_self.gender }}
-                    </td>
-                </tr> -->
-<!--                 <tr>
-                    <td>
-                        About me:
-                    </td>
-                    <td>
-                        {{ user.profile_or_self.about_me }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Facebook profile url:
-                    </td>
-                    <td>
-                        {{ user.profile_or_self.facebook_profile_url }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Facebook ID:
-                    </td>
-                    <td>
-                        {{ user.profile_or_self.facebook_id }}
-                    </td>
-                </tr> -->
-<!--                 <tr>
-                    <td>
-                        Date of Birth:
-                    </td>
-                    <td>
-                        {{ user.profile_or_self.date_of_birth }}
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Website Url:
-                    </td>
-                    <td>
-                        {{ user.profile_or_self.website_url }}
-                    </td>
-                </tr>
-                 {% if user.profile_or_self.image %}
-                <tr>
-                    <td>
-                        Local Image:
-                    </td>
-                    <td>
-
-                        
-                    </td>
-                </tr> -->
-                 {% endif %}
-<!--                 <tr>
-                    <td>
-                        Hotlinked Image:
-                    </td>
-                    <td>
-                        <img src="http://graph.facebook.com/{{ user.profile_or_self.facebook_id }}/picture?type=large" title="facebook stored image"/><br/>
-                    </td>
-                </tr> -->
-<!--                 <tr>
-                    <td>
-                        Likes:
-                    </td>
-                    <td>
-                        <ul>
-                             {% for like in user.profile_or_self.likes|slice:":5" %}
-                            <li>{{ like.name }}</li>
-                             {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Friends:
-                    </td>
-                    <td>
-                        <ul>
-                             {% for friend in user.profile_or_self.friends|slice:":5" %}
-                            <li>{{ friend.name }}</li>
-                             {% endfor %}
-                        </ul>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Getting More:
-                    </td>
-                    <td>
-                        Facebook has a ton more data, read about it <a href="https://developers.facebook.com/docs/reference/api/">here</a>.
-                    </td>
-                </tr> -->
-                </table>
-<!--                 <p>
-                     You can connect users which registered the old fashioned way, by giving them the following option to connect. Note that we explitly indicate that we are connecting using the connect_facebook=1 value.
-                </p> -->
-<!--                 <form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
-                    <a href="javascript:void(0);" onclick="F.connect(this.parentNode);">Connect this account to Facebook</a> (used to connect non facebook accounts) <input type="hidden" value="{{ request.path }}" name="next"/>
-                    <input type="hidden" name="connect_facebook" value="1">
-                    {% csrf_token %}
-                </form> -->
 
 
-                 {% endif %}
-            </div>
-            </div>
 
 
-            <script src="{{ STATIC_URL }}django_facebook/js/statictest.js" type="text/javascript"></script>
-             {% include 'django_facebook/_facebook_js.html' %}
-        </div>
 
-        </div>
+<!-- script references -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js">
+</script>
+<script src="{{ STATIC_URL }}js/bootstrap.min.js">
+</script>
 
+<div id="fb-root">
+</div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s);
+    js.async=true;
+    js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=351932604967436&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
 
-        <div calss="col-md-12">
-              <div class="list-group-item">
-                <div class="list-group-item-heading">
-                    <h3>الأنبا إرميا</h3>
-                    <p class="list-group-item-text"> <div class="fb-like" data-href="https://www.facebook.com/BishopErmia" data-layout="standard" data-action="like" data-show-faces="true" data-share="true">
-                  </div></p>
-                </div>
-              </div>
-
-              <div class="list-group-item">
-                <div class="list-group-item-heading">
-                    <h3>المركز الثقافى القبطى الأرثوذكسى</h3>
-                  <p class="list-group-item-text"> <div class="fb-like" data-href="https://www.facebook.com/CopticOCC" data-layout="standard" data-action="like" data-show-faces="true" data-share="true">
-                  </div></p>
-                </div>
-
-              <div class="list-group-item">
-                <div class="list-group-item-heading">
-                    <h3>أكاديمية المركز</h3>
-                    <p class="list-group-item-text"> <div class="fb-like" data-href="https://www.facebook.com/COCCAcademy" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div></p>
-                </div>
-              </div>
-        </div>
-        </div>
+  }
+   (document, 'script', 'facebook-jssdk'));
 
 
-        <!-- script references -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-        <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-
-        <div id="fb-root"></div>
-        <script>(function(d, s, id) {
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) return;
-          js = d.createElement(s); js.id = id;
-          js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=351932604967436&version=v2.0";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));</script>
-    </div>
-    </body>
-    </html>
+</script>
+</div>
+</body>
+</html>
