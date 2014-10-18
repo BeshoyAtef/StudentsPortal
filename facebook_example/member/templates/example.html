@@ -394,15 +394,16 @@ Learn more
                 Save
               </button>
             </form>
+            <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-block btn-danger">
+              تسجيل خروج
+            </a>
             
           </div>
         </div>
         
 
         <br/>
-        <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">
-          logout
-        </a>
+
         {% endif %}
 
       </table>
