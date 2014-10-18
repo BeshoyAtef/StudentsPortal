@@ -75,46 +75,15 @@
 <input type="text" class="form-control col-lg-8" placeholder="Search">
 </form>
 -->
-    <!--     
+         
 <ul class="nav navbar-nav navbar-right">
 <li>
-<a href="#">
-Link
-</a>
-</li>
-<li class="dropdown">
-<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-Dropdown 
-<b class="caret">
-</b>
-</a>
-<ul class="dropdown-menu">
-<li>
-<a href="#">
-Action
-</a>
-</li>
-<li>
-<a href="#">
-Another action
-</a>
-</li>
-<li>
-<a href="#">
-Something else here
-</a>
-</li>
-<li class="divider">
-</li>
-<li>
-<a href="#">
-Separated link
-</a>
+        <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">
+          logout
+        </a>
 </li>
 </ul>
-</li>
-</ul>
--->
+
   </div>
   </div>
   </div>
@@ -457,13 +426,9 @@ use error next for a seperate error page
           </div>
         </div>
         
-        <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">
-          logout
-        </a>
+
         <br/>
-        <p>
-          Thank you for logging in with Facebook. 
-        </p>
+
         <!--                 
 <table id="rounded-corner">
 <thead>
