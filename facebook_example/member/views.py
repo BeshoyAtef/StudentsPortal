@@ -28,7 +28,7 @@ def example(request):
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    profile = MyCustomProfile.objects.get(user=int(user_id))
+    profile, created = MyCustomProfile.objects.get_or_create(user=int(user_id))
     print created
     # try:
     if request.POST.get('email2'):
