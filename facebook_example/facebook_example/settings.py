@@ -2,6 +2,8 @@
 import os
 import django
 import sys
+# from member.models import *
+
 django_version = django.VERSION
 # some complications related to our travis testing setup
 DJANGO = os.environ.get('DJANGO', '1.5.1')
@@ -261,5 +263,5 @@ elif MODE == 'userena':
     )
 # FACEBOOK_STORE_LIKES = True
 # FACEBOOK_STORE_FRIENDS = True
-
+AUTH_PROFILE_MODULE = 'member.MyCustomProfile'
 FACEBOOK_OG_SHARE_DB_TABLE = 'django_facebook_open_graph_share'

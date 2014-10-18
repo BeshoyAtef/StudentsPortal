@@ -8,14 +8,45 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'UserProfile'
+        db.create_table(u'member_userprofile', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('about_me', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('facebook_id', self.gf('django.db.models.fields.BigIntegerField')(unique=True, null=True, blank=True)),
+            ('access_token', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('facebook_name', self.gf('django.db.models.fields.CharField')(max_length=255, null=True, blank=True)),
+            ('facebook_profile_url', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('website_url', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('blog_url', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('date_of_birth', self.gf('django.db.models.fields.DateField')(null=True, blank=True)),
+            ('gender', self.gf('django.db.models.fields.CharField')(max_length=1, null=True, blank=True)),
+            ('raw_data', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
+            ('facebook_open_graph', self.gf('django.db.models.fields.NullBooleanField')(null=True, blank=True)),
+            ('new_token_required', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('image', self.gf('django.db.models.fields.files.ImageField')(max_length=255, null=True, blank=True)),
+            ('mobilenumber', self.gf('django.db.models.fields.CharField')(max_length=20, null=True)),
+            ('email2', self.gf('django.db.models.fields.EmailField')(unique=True, max_length=254)),
+            ('user', self.gf('django.db.models.fields.IntegerField')(unique=True)),
+        ))
+        db.send_create_signal(u'member', ['UserProfile'])
 
-        # Changing field 'UserProfile.user'
-        db.alter_column(u'member_userprofile', 'user_id', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['django_facebook.FacebookCustomUser'], unique=True))
+        # Adding model 'MyCustomProfile'
+        db.create_table(u'member_mycustomprofile', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['django_facebook.FacebookCustomUser'], unique=True)),
+            ('mobilenumber', self.gf('django.db.models.fields.CharField')(max_length=20, null=True)),
+            ('email2', self.gf('django.db.models.fields.EmailField')(unique=True, max_length=254)),
+        ))
+        db.send_create_signal(u'member', ['MyCustomProfile'])
+
 
     def backwards(self, orm):
+        # Deleting model 'UserProfile'
+        db.delete_table(u'member_userprofile')
 
-        # Changing field 'UserProfile.user'
-        db.alter_column(u'member_userprofile', 'user_id', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True))
+        # Deleting model 'MyCustomProfile'
+        db.delete_table(u'member_mycustomprofile')
+
 
     models = {
         u'auth.group': {
@@ -68,6 +99,13 @@ class Migration(SchemaMigration):
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'}),
             'website_url': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})
         },
+        u'member.mycustomprofile': {
+            'Meta': {'object_name': 'MyCustomProfile'},
+            'email2': ('django.db.models.fields.EmailField', [], {'unique': 'True', 'max_length': '254'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'mobilenumber': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
+            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['django_facebook.FacebookCustomUser']", 'unique': 'True'})
+        },
         u'member.userprofile': {
             'Meta': {'object_name': 'UserProfile'},
             'about_me': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
@@ -85,7 +123,7 @@ class Migration(SchemaMigration):
             'mobilenumber': ('django.db.models.fields.CharField', [], {'max_length': '20', 'null': 'True'}),
             'new_token_required': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
             'raw_data': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'user': ('django.db.models.fields.related.OneToOneField', [], {'to': u"orm['django_facebook.FacebookCustomUser']", 'unique': 'True'}),
+            'user': ('django.db.models.fields.IntegerField', [], {'unique': 'True'}),
             'website_url': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'})
         }
     }

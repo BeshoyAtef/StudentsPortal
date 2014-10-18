@@ -19,22 +19,16 @@ from open_facebook.utils import send_warning
 from django_facebook.models import * 
 import logging
 from member.models import *
-from member.models import Profile
+# from member.models import Profile
 
 def example(request):
     context = RequestContext(request)
     print request
-    data={}
-    try:
-        profile = Profile.objects.get(user_id=request.user.id)
-        data={'profile':profile}
-    except ImportError as e:
-        logger.info('Couldnt get profile, got error %s', e)
-    return render_to_response('example.html',data, context)
+    return render_to_response('example.html', context)
 
 def collectinfo(request):
     user_id = request.POST['user_id']
-    profile, created = Profile.objects.get_or_create(user=int(user_id))
+    profile = MyCustomProfile.objects.get(user=int(user_id))
     print created
     # try:
     if request.POST.get('email2'):
