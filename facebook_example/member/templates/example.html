@@ -76,13 +76,11 @@
 </form>
 -->
          
-<ul class="nav navbar-nav navbar-right">
+<!-- <ul class="nav navbar-nav navbar-right">
 <li>
-        <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">
-          logout
-        </a>
+
 </li>
-</ul>
+</ul> -->
 
   </div>
   </div>
@@ -402,8 +400,9 @@ Learn more
         
 
         <br/>
-
-
+        <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-danger">
+          logout
+        </a>
         {% endif %}
 
       </table>
