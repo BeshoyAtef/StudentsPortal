@@ -219,7 +219,7 @@
         المسابقة النهائية و التي ستختبر قدرات الطالب علي الابتكار و التركيز و السرعة في تطبيق ما تعلمة من ورشة العمل. 
         <p>
           <a class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-            Learn more
+             المزيد ...
             </a>
         </p>
         
@@ -289,40 +289,14 @@ Learn more
     <div style="margin-top: 60px;">
       {% if not user.is_authenticated %}
       <div class="inner_content">
-<!--         <form class="form col-md-12 center-block" method="post" action="{% url 'django.contrib.auth.views.login' %}">
-          {% csrf_token %}
-          <div class="form-group">
-            <input type="text" class="form-control input-lg" placeholder="Email">
-          </div>
-          <div class="form-group">
-            <input type="password" class="form-control input-lg" placeholder="Password">
-          </div>
-          <div class="form-group">
-            <button class="btn btn-primary btn-lg btn-block">
-              Sign In
-            </button>
-            <span class="pull-right">
-              <a href="#">
-                Register
-              </a>
-            </span>
-            <span>
-              <a href="{% url 'auth_password_reset' %}">
-                Need help?
-              </a>
-            </span>
-          </div>
-        </form> -->
+
         <style type="text/css">
         </style>
 
         <form class="form center " action="{% url 'facebook_connect' %}" method="post">
           {% csrf_token %} 
           <input type="hidden" value="{{ request.path }}" name="next"/>
-          <!--
-use error next for a seperate error page
-<input type="hidden" value="/error/" name="error_next" />
--->
+
           <div id="facebook_login_js">
           <a class="btn btn-block btn-social btn-lg btn-facebook" onclick="F.connect(this.parentNode.parentNode); return false;" style="text-transform: none;text-align: center;"><i class="fa fa-facebook"></i>سجل بأستخدام الفيسبوك</a>
            <!--  <input onclick="F.connect(this.parentNode.parentNode); return false;" type="image" src="{{ STATIC_URL }}django_facebook/images/facebook_login.png"/> -->
@@ -437,7 +411,6 @@ use error next for a seperate error page
 
       
       
-      {% endif %}
     </div>
 
     <div calss="row">
