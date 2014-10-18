@@ -339,9 +339,9 @@ use error next for a seperate error page
         {% if  user.profile.mobilenumber %}
         <div class="alert alert-success" role="alert">
           <strong>
-            كولو تمام!
+            تم التسجيل!
           </strong>
-          أفتكر اللحظة دي علشان قبلها مش ذي بعدها.
+          انت الان مشترك في ورشة تعليم HTML & CSS.
         </div>
         {% else %}
         <div class="alert alert-warning" role="alert">
@@ -370,7 +370,7 @@ use error next for a seperate error page
           </div>
           <div class="panel-body">
             <span class="thumbnail">
-              <img src="{{ user.profile_or_self.image.url }}" title="local copy"/>
+              <img src="{{ user.profile_or_self.image.url }}" title="local copy" class="img-thumbnail" />
             </span>
             
             <form class="form col-md-12 center-block" method="post" action="/savemobile/">
@@ -429,168 +429,12 @@ use error next for a seperate error page
 
         <br/>
 
-        <!--                 
-<table id="rounded-corner">
-<thead>
-<tr>
-<th>
-Field
-</th>
-<th>
-Data
-</th>
-</tr>
-</thead>
-<tr>
-<td>
-First Name:
-</td>
-<td>
-{{ user.first_name }}
-</td>
-</tr>
-<tr>
-<td>
-Last Name:
-</td>
-<td>
-{{ user.last_name }}
-</td>
-</tr>
-<tr>
-<td>
-Gender:
-</td>
-<td>
-{{ user.profile_or_self.gender }}
-</td>
-</tr>
--->
-        <!--                 
-<tr>
-<td>
-About me:
-</td>
-<td>
-{{ user.profile_or_self.about_me }}
-</td>
-</tr>
-<tr>
-<td>
-Facebook profile url:
-</td>
-<td>
-{{ user.profile_or_self.facebook_profile_url }}
-</td>
-</tr>
-<tr>
-<td>
-Facebook ID:
-</td>
-<td>
-{{ user.profile_or_self.facebook_id }}
-</td>
-</tr>
--->
-        <!--                 
-<tr>
-<td>
-Date of Birth:
-</td>
-<td>
-{{ user.profile_or_self.date_of_birth }}
-</td>
-</tr>
-<tr>
-<td>
-Website Url:
-</td>
-<td>
-{{ user.profile_or_self.website_url }}
-</td>
-</tr>
-{% if user.profile_or_self.image %}
-<tr>
-<td>
-Local Image:
-</td>
-<td>
 
-
-</td>
-</tr>
--->
         {% endif %}
-        <!--                 
-<tr>
-<td>
-Hotlinked Image:
-</td>
-<td>
-<img src="http://graph.facebook.com/{{ user.profile_or_self.facebook_id }}/picture?type=large" title="facebook stored image"/>
-<br/>
-</td>
-</tr>
--->
-        <!--                 
-<tr>
-<td>
-Likes:
-</td>
-<td>
-<ul>
-{% for like in user.profile_or_self.likes|slice:":5" %}
-<li>
-{{ like.name }}
-</li>
-{% endfor %}
-</ul>
-</td>
-</tr>
-<tr>
-<td>
-Friends:
-</td>
-<td>
-<ul>
-{% for friend in user.profile_or_self.friends|slice:":5" %}
-<li>
-{{ friend.name }}
-</li>
-{% endfor %}
-</ul>
-</td>
-</tr>
-<tr>
-<td>
-Getting More:
-</td>
-<td>
-Facebook has a ton more data, read about it 
-<a href="https://developers.facebook.com/docs/reference/api/">
-here
-</a>
-.
-</td>
-</tr>
--->
+
       </table>
-      <!--                 
-<p>
-You can connect users which registered the old fashioned way, by giving them the following option to connect. Note that we explitly indicate that we are connecting using the connect_facebook=1 value.
-</p>
--->
-      <!--                 
-<form action="{% url 'facebook_connect' %}?facebook_login=1" method="post">
-<a href="javascript:void(0);" onclick="F.connect(this.parentNode);">
-Connect this account to Facebook
-</a>
-(used to connect non facebook accounts) 
-<input type="hidden" value="{{ request.path }}" name="next"/>
-<input type="hidden" name="connect_facebook" value="1">
-{% csrf_token %}
-</form>
--->
+
+
       
       
       {% endif %}
