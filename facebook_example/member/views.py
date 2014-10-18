@@ -44,6 +44,7 @@ def collectinfo(request):
     # try:
     print "i am in ty 2"
     if request.POST.get('mobilenumber'):
+        print "i am in if 2"
         profile.mobilenumber=request.POST['mobilenumber']
         print  "mobilenumber saved"
         profile.save()
