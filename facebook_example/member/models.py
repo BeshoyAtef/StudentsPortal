@@ -45,7 +45,7 @@ class MyCustomProfile(models.Model):
     '''
     Inherit the properties from django facebook
     '''
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name="profile")
     mobilenumber = models.CharField(max_length=20 , null=True)
     email2 = models.EmailField(max_length=254, unique=True)
     # user_id = models.IntegerField(blank=False,unique=True)

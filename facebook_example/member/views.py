@@ -23,7 +23,7 @@ from member.models import *
 
 def example(request):
     context = RequestContext(request)
-    print request
+    # print request
     return render_to_response('example.html', context)
 
 def collectinfo(request):
