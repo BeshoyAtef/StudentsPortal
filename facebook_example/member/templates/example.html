@@ -397,9 +397,7 @@ Learn more
 
             
           </div>
-          <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-block btn-danger">
-            تسجيل خروج
-          </a>
+
         </div>
         
 
@@ -459,7 +457,12 @@ Learn more
         </div>
       </div>
     </div>
-
+    
+    {% if user.is_authenticated %}
+    <a href="{% url 'auth_logout' %}?next={{ request.path|urlencode }}" class="btn btn-block btn-danger">
+      تسجيل خروج
+    </a>
+    {% endif %}
 
   </div>
   
