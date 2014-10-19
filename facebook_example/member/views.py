@@ -26,6 +26,11 @@ def example(request):
     # print request
     return render_to_response('example.html', context)
 
+def policy(request):
+    context = RequestContext(request)
+    # print request
+    return render_to_response('policy.html', context)
+
 def collectinfo(request):
     user_id = request.POST['user_id']
     profile, created = MyCustomProfile.objects.get_or_create(user=FacebookCustomUser.objects.get(id=request.user.id))

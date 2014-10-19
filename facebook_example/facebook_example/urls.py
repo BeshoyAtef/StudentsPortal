@@ -21,7 +21,7 @@ urlpatterns = patterns('',
                        url(r'^$', example, name='facebook_example'),
                        url('', include('django.contrib.auth.urls')),
                        url(r'^savemobile/$', collectinfo),
-
+                        url(r'^policy/$', policy),
 
                        )
 
