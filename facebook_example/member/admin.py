@@ -6,10 +6,18 @@ try:
 except:
     pass
 
-admin.site.register(UserProfile)
-admin.site.register(MyCustomProfile)
-admin.site.register(FacebookCustomUser)
 try:
-    admin.site.register(User)
+    admin.site.register(member.UserProfile)
+    admin.site.register(memeber.MyCustomProfile)
+except:
+    pass
+
+try:
+    admin.site.register(django_facebook.FacebookCustomUser)
+except:
+    pass
+    
+try:
+    admin.site.register(auth.User)
 except:
     pass
